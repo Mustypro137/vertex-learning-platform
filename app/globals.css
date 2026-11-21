@@ -20,6 +20,8 @@
   --color-neutral-200: #e2e8f0;
   --color-neutral-100: #f1f5f9;
   --color-neutral-50: #fafafc;
+  /* Not a named swatch on the sheet: the warm page canvas of design/vertex-home.png. */
+  --color-canvas: #fbf8f5;
 
   /* Type scale (Display uses font-display, the rest Inter) */
   --text-display-1: 3rem;

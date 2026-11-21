@@ -15,13 +15,17 @@ export function LogoMark({ className }: { className?: string }) {
   );
 }
 
+const textSizes = { md: "text-h3", lg: "text-h1", responsive: "text-h3 sm:text-h1" };
+const markSizes = { md: "h-6 w-7", lg: "h-8 w-9", responsive: "h-6 w-7 sm:h-8 sm:w-9" };
+
 export function Logo({
   href = "/",
   size = "md",
   className,
 }: {
   href?: string;
-  size?: "md" | "lg";
+  /** "responsive" is md on mobile and lg from the sm breakpoint. */
+  size?: "md" | "lg" | "responsive";
   className?: string;
 }) {
   return (
@@ -29,11 +33,11 @@ export function Logo({
       href={href}
       className={cn(
         "inline-flex items-center gap-2 font-semibold text-neutral-900 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-400",
-        size === "lg" ? "text-h1" : "text-h3",
+        textSizes[size],
         className,
       )}
     >
-      <LogoMark className={size === "lg" ? "h-8 w-9" : "h-6 w-7"} />
+      <LogoMark className={markSizes[size]} />
       Vertex
     </Link>
   );

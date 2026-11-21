@@ -91,7 +91,7 @@ Replace the placeholder `app/page.tsx` with the home page from `design/vertex-ho
 ## Manual test steps
 1. Run `npm run dev` and open http://localhost:3000.
 2. Compare the page with `design/vertex-home.png` at roughly 1024px browser width.
-3. Press Cmd+K (Mac) or Ctrl+K (Windows) and check that the search field gets focus. Type "caching" and press Enter. The URL should become `/search?q=caching`. That page 404s until search is built.
+3. Press Cmd+K (Mac) or Ctrl+K (Windows) and check that the search field gets focus. Type "caching" and press Enter. The URL should become `/search?q=caching`. That page 404s until search is built. Go back to http://localhost:3000 before the next step.
 4. Tab through the header, CTA, search, "View all courses", and each card, and check the focus rings.
 5. Narrow the window to about 375px and check the layout: cards stack, there is no horizontal scroll, and the header fits.
 6. Open `/design-system` and check that the compact course card looks unchanged.

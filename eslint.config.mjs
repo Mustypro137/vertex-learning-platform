@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Skill reference material, not app code:
+    "agent/**",
+    ".agents/**",
+    ".claude/**",
   ]),
 ]);
 

@@ -5,6 +5,7 @@ import {
   CirclePlay,
   Clock,
   ExternalLink,
+  File,
   FileText,
   Folder,
 } from "lucide-react";
@@ -27,18 +28,60 @@ export function CourseCard({
   level,
   duration,
   moduleCount,
+  variant = "compact",
   className,
 }: {
   href: string;
-  /** Course icon/logo, rendered in a 40px tile. */
+  /** Compact: rendered in a 40px dark tile. Featured: rendered as-is (pass a 72px image). */
   icon: ReactNode;
   title: string;
   description: string;
   level: string;
   duration: string;
   moduleCount: number;
+  /** "featured" is the stacked home-page layout with a large icon and serif title. */
+  variant?: "compact" | "featured";
   className?: string;
 }) {
+  const stretchedLink = (
+    <Link
+      href={href}
+      className="rounded-xs after:absolute after:inset-0 after:rounded-lg focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-primary-400"
+    >
+      {courseTitle}
+    </Link>
+  );
+  const modules = `${moduleCount} ${moduleCount === 1 ? "module" : "modules"}`;
+
+  if (variant === "featured") {
+    const featuredMeta = "flex items-center gap-1.5 text-small whitespace-nowrap text-neutral-700";
+    return (
+      <article className={cn(card, "p-6 transition-shadow hover:shadow-md", className)}>
+        <div className="size-[4.5rem] shrink-0">{icon}</div>
+        <h3 className="mt-7 font-display text-[1.375rem] leading-7 font-medium text-neutral-900">
+          {stretchedLink}
+        </h3>
+        <p className="mt-5 text-body text-neutral-700">{summary}</p>
+        <div className="mt-auto pt-10">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-neutral-200 pt-6">
+            <span className={featuredMeta}>
+              <ChartNoAxesColumnIncreasing aria-hidden className="size-4" />
+              {level}
+            </span>
+            <span className={featuredMeta}>
+              <Clock aria-hidden className="size-4" />
+              {duration}
+            </span>
+            <span className={featuredMeta}>
+              <File aria-hidden className="size-4" />
+              {modules}
+            </span>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
   return (
     <article className={cn(card, "transition-shadow hover:shadow-md", className)}>
       <div className="flex gap-4">
@@ -46,15 +89,8 @@ export function CourseCard({
           {icon}
         </div>
         <div className="min-w-0">
-          <h3 className={title}>
-            {/* Stretched link: the whole card is clickable. */}
-            <Link
-              href={href}
-              className="rounded-xs after:absolute after:inset-0 after:rounded-lg focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-primary-400"
-            >
-              {courseTitle}
-            </Link>
-          </h3>
+          {/* Stretched link: the whole card is clickable. */}
+          <h3 className={title}>{stretchedLink}</h3>
           <p className={cn(description, "mt-1 line-clamp-2")}>{summary}</p>
         </div>
       </div>
@@ -69,7 +105,7 @@ export function CourseCard({
         </span>
         <span className={meta}>
           <Folder aria-hidden className="size-4" />
-          {moduleCount} {moduleCount === 1 ? "module" : "modules"}
+          {modules}
         </span>
       </div>
     </article>

@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+reviews:
+  # Show "Sequence Diagram(s)" in the PR walkthrough, above Merge Risk.
+  sequence_diagrams: true
